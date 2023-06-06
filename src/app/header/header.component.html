@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
+    <div class="container-fluid">
+        <a routerLink="/" class="navbar-brand">Influentia</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mt-2 mt-lg-0 d-flex flex-column flex-lg-row column-gap-lg-3 row-gap-3">
+                <li class="nav-item">
+                    <a routerLink="/" class="nav-link active fw-semibold" aria-current="page" role="button" id="HomeButton">Home</a>
+                </li>
+                <li ngbDropdown class="nav-item dropdown">
+                    <a ngbDropdownToggle href="#" class="nav-link dropdown-toggle fw-semibold" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contents</a>
+                    <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark mt-2 bg-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a ngbDropdownItem routerLink="/contents/create-post" class="dropdown-item fw-semibold custom-hover" role="button" id="CreatePostButton">Create New Post</a></li>
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="ListPostsButton">List All Posts</a></li>
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="PostAnalyticsButton">Post Analytics</a></li>
+                    </ul>
+                </li>
+                <li ngbDropdown class="nav-item dropdown">
+                    <a ngbDropdownToggle href="#" class="nav-link dropdown-toggle fw-semibold" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Accounts</a>
+                    <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark mt-2 bg-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="AddSocialAccountButton">Add New Social Account</a></li>
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="ListRegisteredSocialAccountsButton">List Registered Social Accounts</a></li>
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="RemoveSocialAccountsButton">Remove Social Account</a></li>
+                    </ul>
+                </li>
+                <li ngbDropdown class="nav-item dropdown">
+                    <a ngbDropdownToggle href="#" class="nav-link dropdown-toggle fw-semibold" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Subscriptions</a>
+                    <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark mt-2 bg-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="NewSubscriptionButton">New Subscription</a></li>
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="RenewSubscriptionButton">Renew Subscription</a></li>
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="CancelSubscriptionButton">Cancel Subscription</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="me-lg-auto"></ul>
+            <ul class="navbar-nav d-flex flex-column flex-lg-row">
+                <li class="nav-item">
+                    <button class="btn btn-success px-3 ms-lg-2">
+                        Login / Signup
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

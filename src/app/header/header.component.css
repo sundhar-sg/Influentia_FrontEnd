@@ -1,0 +1,8 @@
+.custom-hover {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-hover:hover {
+    background-color: azure;
+    color: darkcyan;
+}
