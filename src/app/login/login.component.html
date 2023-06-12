@@ -1,0 +1,17 @@
+<div class="d-flex flex-column align-items-center justify-content-center mx-4 row-gap-4 px-3">
+    <span class="fs-4 text-primary fw-semibold">Login to get started</span>
+    <form (ngSubmit)="onSubmit()" method="get" class="row-gap-4 d-flex flex-column justify-content-center align-items-center">
+        <div class="row-gap-1 d-flex flex-column justify-content-start align-items-start">
+            <label for="username">Username</label>
+            <input type="text" style="width: 300px; height: 35px;" class="rounded-2 outline-none border-1 ps-2" placeholder="Enter the username" name="username" id="username" [(ngModel)]="userDTO.username" />
+        </div>
+        <div class="row-gap-1 d-flex flex-column justify-content-start align-items-start">
+            <label for="password">Password</label>
+            <input type="password" style="width: 300px; height: 35px;" class="rounded-2 outline-none border-1 ps-2" placeholder="Enter the password" name="password" id="password" [(ngModel)]="userDTO.password" />
+        </div>
+        <div *ngIf="exception !== null && exception !== ''" class="d-flex flex-column justify-content-start align-items-start">
+            <span class="fs-6 rounded-2 px-3 py-1 text-danger fw-semibold">{{ exception }}</span>
+        </div>
+        <button type="submit" class="btn btn-success w-100 fs-5 fw-semibold rounded-2 text-center">Login</button>
+    </form>
+</div>

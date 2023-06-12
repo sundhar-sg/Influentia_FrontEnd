@@ -12,8 +12,8 @@
                 <li ngbDropdown class="nav-item dropdown">
                     <a ngbDropdownToggle href="#" class="nav-link dropdown-toggle fw-semibold" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contents</a>
                     <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark mt-2 bg-primary" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a ngbDropdownItem routerLink="/contents/create-post" class="dropdown-item fw-semibold custom-hover" role="button" id="CreatePostButton">Create New Post</a></li>
-                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="ListPostsButton">List All Posts</a></li>
+                        <li><a ngbDropdownItem routerLink="/contents/create-post" class="dropdown-item fw-semibold custom-hover" role="button" id="CreatePostButton">New Post</a></li>
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="ListPostsButton">All Posts</a></li>
                         <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="PostAnalyticsButton">Post Analytics</a></li>
                     </ul>
                 </li>
@@ -36,10 +36,17 @@
             </ul>
             <ul class="me-lg-auto"></ul>
             <ul class="navbar-nav d-flex flex-column flex-lg-row">
-                <li class="nav-item">
-                    <button class="btn btn-success px-3 ms-lg-2">
+                <li *ngIf="sharedService.getLoginStatus() === false" class="nav-item">
+                    <button  routerLink="/login" class="btn btn-success px-3 ms-lg-2">
                         Login / Signup
                     </button>
+                </li>
+                <li *ngIf="sharedService.getLoginStatus() === true" ngbDropdown class="nav-item dropdown">
+                    <a ngbDropdownToggle href="#" class="nav-link dropdown-toggle fw-semibold" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome, {{ sharedService.getAuthToken().fullName }}</a>
+                    <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark mt-2 bg-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a ngbDropdownItem href="#" class="dropdown-item fw-semibold custom-hover" role="button" id="ListPostsButton">Account Details</a></li>
+                        <li><a (click)="loginAuth.logout()" ngbDropdownItem class="dropdown-item fw-semibold custom-hover" role="button" id="PostAnalyticsButton">Logout</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

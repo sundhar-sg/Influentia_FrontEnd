@@ -1,0 +1,106 @@
+<div class="d-flex flex-column align-items-center justify-content-center mx-4 row-gap-4 px-3">
+    <span class="fs-4 text-primary fw-semibold">Signup for a new account to get started</span>
+    <form (ngSubmit)="onSubmit()" method="post" class="row-gap-4 d-flex flex-column text-center justify-content-center align-items-center">
+        <div class="row-gap-1 w-100 d-flex flex-column text-center justify-content-center align-items-center">
+            <span class="fs-4 text-primary fw-semibold">User Details & Credentials</span>
+            <hr class="border border-1 w-100 border-dark">
+        </div>
+        <div class="row-gap-2 d-flex flex-column justify-content-start align-items-start">
+            <label for="firstname">First Name</label>
+            <input type="text" style="width: 300px; height: 35px;" class="rounded-2 ps-2 outline-none border-1" placeholder="Enter the first name" name="firstname" id="firstname" [(ngModel)]="signupDTO.firstname" required />
+        </div>
+        <div *ngIf="exceptionList.firstname !== null && exceptionList.firstname !== ''" class="d-flex flex-column justify-content-start align-items-start">
+            <span style="width: 300px; word-wrap: break-word;" class="fs-6 rounded-2 px-3 py-1 text-danger fw-semibold">{{ exceptionList.firstname }}</span>
+        </div>
+        <div class="row-gap-2 d-flex flex-column justify-content-start align-items-start">
+            <label for="lastname">Last Name</label>
+            <input type="text" style="width: 300px; height: 35px;" class="rounded-2 ps-2 outline-none border-1" placeholder="Enter the last name" name="lastname" id="lastname" [(ngModel)]="signupDTO.lastname" required />
+        </div>
+        <div *ngIf="exceptionList.lastname !== null && exceptionList.lastname !== ''" class="d-flex flex-column justify-content-start align-items-start">
+            <span style="width: 300px; word-wrap: break-word;" class="fs-6 rounded-2 px-3 py-1 text-danger fw-semibold">{{ exceptionList.lastname }}</span>
+        </div>
+        <div class="row-gap-2 d-flex flex-column justify-content-start align-items-start">
+            <label for="username">Username</label>
+            <input type="text" style="width: 300px; height: 35px;" class="rounded-2 ps-2 outline-none border-1" placeholder="Enter the username" name="username" id="username" [(ngModel)]="signupDTO.username" required />
+        </div>
+        <div *ngIf="exceptionList.username !== null && exceptionList.username !== ''" class="d-flex flex-column justify-content-start align-items-start">
+            <span style="width: 300px; word-wrap: break-word;" class="fs-6 rounded-2 px-3 py-1 text-danger fw-semibold">{{ exceptionList.username }}</span>
+        </div>
+        <div class="row-gap-2 d-flex flex-column justify-content-start align-items-start">
+            <label for="password">Password</label>
+            <input type="password" style="width: 300px; height: 35px;" class="rounded-2 ps-2 outline-none border-1" placeholder="Enter the password" name="password" id="password" [(ngModel)]="signupDTO.password" required />
+        </div>
+        <div *ngIf="exceptionList.password !== null && exceptionList.password !== ''" class="d-flex flex-column justify-content-start align-items-start">
+            <span style="width: 300px; word-wrap: break-word;" class="fs-6 rounded-2 px-3 py-1 text-danger fw-semibold">{{ exceptionList.password }}</span>
+        </div>
+        <div class="row-gap-2 d-flex flex-column justify-content-start align-items-start">
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" style="width: 300px; height: 35px;" class="rounded-2 ps-2 outline-none border-1" placeholder="Enter the confirmation password" [(ngModel)]="confirmPassword" onkeydown="isFormValidated()" name="confirmpassword" id="confirmpassword" required />
+        </div>
+        <div *ngIf="confirmationException !== null && confirmationException !== ''" class="d-flex flex-column justify-content-start align-items-start">
+            <span class="fs-6 rounded-2 px-3 py-1 text-danger fw-semibold">{{ confirmationException }}</span>
+        </div>
+        <div class="row-gap-1 w-100 d-flex flex-column text-center justify-content-center align-items-center">
+            <hr class="border border-1 w-100 border-dark">
+            <span class="fs-4 text-primary fw-semibold">Select a Subscription Plan</span>
+            <hr class="border border-1 w-100 border-dark">
+        </div>
+        <div class="row-gap-2 w-100 d-flex flex-column justify-content-start align-items-start">
+            <label for="planType" class="fw-semibold">Plan Type</label>
+            <div class="d-flex flex-row w-100 align-items-center column-gap-4">
+                <div class="d-flex column-gap-2">
+                    <input type="radio" name="planID" id="planID" value="1" [(ngModel)]="signupDTO.planID" required>
+                    <label for="planID">Pro</label>
+                </div>
+                <div class="d-flex flex-row column-gap-2">
+                    <input type="radio" name="planID" id="planID" value="2" [(ngModel)]="signupDTO.planID" required>
+                    <label for="planID">Basic</label>
+                </div>
+            </div>
+        </div>
+        <div class="row-gap-2 w-100 d-flex flex-column justify-content-start align-items-start">
+            <label for="validityDuration" class="fw-semibold">Validity Duration</label>
+            <div class="d-flex flex-column align-items-center justify-content-center row-gap-4">
+                <div class="d-flex flex-row w-100 align-items-center column-gap-4">
+                    <div class="d-flex column-gap-2">
+                        <input type="radio" name="validityDuration" id="validityDuration" value="1" [(ngModel)]="signupDTO.validityDuration" required>
+                        <label for="validityDuration">1 Month</label>
+                    </div>
+                    <div class="d-flex flex-row column-gap-2">
+                        <input type="radio" name="validityDuration" id="validityDuration" value="3" [(ngModel)]="signupDTO.validityDuration" required>
+                        <label for="validityDuration">3 Months</label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <div class="d-flex flex-row w-100 align-items-center column-gap-4">
+                    <div class="d-flex column-gap-2">
+                        <input type="radio" name="validityDuration" id="validityDuration" value="6" [(ngModel)]="signupDTO.validityDuration" required>
+                        <label for="validityDuration">6 Months</label>
+                    </div>
+                    <div class="d-flex flex-row column-gap-2">
+                        <input type="radio" name="validityDuration" id="validityDuration" value="12" [(ngModel)]="signupDTO.validityDuration" required>
+                        <label for="validityDuration">1 Year</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-gap-2 w-100 d-flex flex-column justify-content-start align-items-start">
+            <label for="paymentMode" class="fw-semibold">Payment Mode</label>
+            <div class="d-flex flex-row w-100 align-items-center column-gap-4">
+                <div class="d-flex column-gap-2">
+                    <input type="radio" name="paymentMode" id="paymentMode" value="Card" [(ngModel)]="signupDTO.paymentMode" required>
+                    <label for="paymentMode">Card</label>
+                </div>
+                <div class="d-flex flex-row column-gap-2">
+                    <input type="radio" name="paymentMode" id="paymentMode" value="NetBanking" [(ngModel)]="signupDTO.paymentMode" required>
+                    <label for="paymentMode">Net Banking</label>
+                </div>
+            </div>
+        </div>
+        <div class="row-gap-1 w-100 d-flex flex-column text-center justify-content-center align-items-center">
+            <hr class="border border-1 w-100 border-dark">
+        </div>
+        <button type="submit" class="btn btn-success w-100 rounded-2 fw-semibold fs-5 text-center" [disabled]="isFormValidated()">Sign Up</button>
+    </form>
+</div>

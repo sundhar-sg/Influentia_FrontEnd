@@ -1,0 +1,17 @@
+.customColor {
+    background-color: lavender;
+}
+
+.customTransition {
+    color: black;
+    transition: color 200ms;
+}
+
+.customTransition:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.selected {
+    color: blue;
+}
