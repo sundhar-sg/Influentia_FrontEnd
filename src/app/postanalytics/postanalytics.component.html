@@ -1,0 +1,107 @@
+<div class="container-fluid bg-dark bg-opacity-10 w-100 py-5 row-gap-5 align-items-center justify-content-center d-flex flex-column text-center">
+    <div class="d-flex w-75 shadow flex-column bg-white rounded-3 row-gap-5 shadow-lg py-5">
+        <span class="fs-3 fw-semibold text-primary">Post Analytics for your account.</span>
+        <div class="d-flex flex-column align-items-center justify-content-center row-gap-3">
+            <span class="fs-5 text-primary fw-semibold fst-italic">Select your Insight Type</span>
+            <div class="d-flex align-items-center justify-content-center row-gap-3 column-gap-4 flex-wrap">
+                <div class="d-flex column-gap-2">
+                    <input type="radio" name="insightType" id="insightType" value="Month" [(ngModel)]="insightType" />
+                    <label for="insightType" class="fs-5">Month</label>
+                </div>
+                <div class="d-flex column-gap-2">
+                    <input type="radio" name="insightType" id="insightType" value="Quarter" [(ngModel)]="insightType" />
+                    <label for="insightType" class="fs-5">Quarter</label>
+                </div>
+                <div class="d-flex column-gap-2">
+                    <input type="radio" name="insightType" id="insightType" value="HalfYear" [(ngModel)]="insightType" />
+                    <label for="insightType" class="fs-5">Half Year</label>
+                </div>
+                <div class="d-flex column-gap-2">
+                    <input type="radio" name="insightType" id="insightType" value="Year" [(ngModel)]="insightType" />
+                    <label for="insightType" class="fs-5">Year</label>
+                </div>
+                <div class="d-flex column-gap-2">
+                    <input type="radio" name="insightType" id="insightType" value="Custom" [(ngModel)]="insightType" />
+                    <label for="insightType" class="fs-5">Custom</label>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedInsightType() === 'Month'" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
+            <label for="monthValue" class="fs-5 text-primary fw-semibold fst-italic">Choose the month and year for your insights</label>
+            <div class="d-flex w-75 align-items-center justify-content-evenly">
+                <select [(ngModel)]="monthValue" class="border border-2 border-dark-subtle rounded-2" style="height: 30px; width: 200px;" name="monthValue" id="monthValue">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <input [(ngModel)]="yearValue" style="height: 30px; width: 200px;" class="border border-2 rounded-2 border-dark-subtle" type="text" name="yearValue" id="yearValue" placeholder="Enter the year for your insights" />
+            </div>
+        </div>
+        <div *ngIf="selectedInsightType() === 'Quarter'" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
+            <span class="fs-5 text-primary fw-semibold fst-italic">Choose the Quarter for your insights</span>
+            <div class="d-flex column-gap-4">
+                <div class="d-flex column-gap-2">
+                    <input [(ngModel)]="insightValue" type="radio" name="quarterType" id="quarterType" value="1st Quarter">
+                    <label for="quarterType" class="fs-5">1st Quarter</label>
+                </div>
+                <div class="d-flex column-gap-2">
+                    <input [(ngModel)]="insightValue" type="radio" name="quarterType" id="quarterType" value="2nd Quarter">
+                    <label for="quarterType" class="fs-5">2nd Quarter</label>
+                </div>
+                <div class="d-flex column-gap-2">
+                    <input [(ngModel)]="insightValue" type="radio" name="quarterType" id="quarterType" value="3rd Quarter">
+                    <label for="quarterType" class="fs-5">3rd Quarter</label>
+                </div>
+                <div class="d-flex column-gap-2">
+                    <input [(ngModel)]="insightValue" type="radio" name="quarterType" id="quarterType" value="4th Quarter">
+                    <label for="quarterType" class="fs-5">4th Quarter</label>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedInsightType() === 'HalfYear'" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
+            <span class="fs-5 text-primary fw-semibold fst-italic">Choose the Semi Annual for your insights</span>
+            <div class="d-flex column-gap-4">
+                <div class="d-flex column-gap-2">
+                    <input [(ngModel)]="insightValue" type="radio" name="semiAnnualType" id="semiAnnualType" value="1st Semi Annual">
+                    <label for="semiAnnualType" class="fs-5">1st Semi Annual</label>
+                </div>
+                <div class="d-flex column-gap-2">
+                    <input [(ngModel)]="insightValue" type="radio" name="semiAnnualType" id="semiAnnualType" value="2nd Semi Annual">
+                    <label for="semiAnnualType" class="fs-5">2nd Semi Annual</label>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedInsightType() === 'Year'" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
+            <span class="fs-5 text-primary fw-semibold fst-italic">Choose the Year for your insights</span>
+            <input [(ngModel)]="yearValue" style="width: 300px; height: 30px;" class="ps-2 border border-2 border-dark-subtle rounded-2" type="text" name="yearlyInsight" id="yearlyInsight" placeholder="Enter the Year for your insights" />
+        </div>
+        <div *ngIf="selectedInsightType() === 'Custom'" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
+            <span class="fs-5 text-primary fw-semibold fst-italic">Choose the Dates for your insights</span>
+            <div class="d-flex w-75 justify-content-evenly">
+                <div class="d-flex flex-column row-gap-3">
+                    <label class="fs-5 fw-semibold" for="startDate">Start Date</label>
+                    <input [(ngModel)]="startDate" class="border border-2 border-dark-subtle rounded-2" type="date" name="startDate" id="startDate" style="width: 150px; height: 30px;" />
+                </div>
+                <div class="d-flex flex-column row-gap-3">
+                    <label class="fs-5 fw-semibold" for="endDate">End Date</label>
+                    <input [(ngModel)]="endDate" class="border border-2 border-dark-subtle rounded-2" type="date" name="endDate" id="endDate" style="width: 150px; height: 30px;" />
+                </div>
+            </div>
+        </div>
+        <div>
+            <button [disabled]="selectedInsightType() === '' ? true : false" class="btn btn-success w-25" type="submit">Find Post Analytics</button>
+        </div>
+    </div>
+    <div class="w-75 py-5 shadow-lg rounded-3 d-flex align-items-center bg-white justify-content-center flex-wrap column-gap-5 row-gap-5">
+        <span class="text-success fw-semibold fs-3">Analytics Report based on your preferences</span>
+    </div>
+</div>

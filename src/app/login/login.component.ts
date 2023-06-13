@@ -31,8 +31,7 @@ export class LoginComponent {
                     // alert("Login Successfull :)");
                     this.responseDTO = jwtDecode(response.token);
                     this.sharedService.setAuthToken(jwtDecode(localStorage.getItem("authToken") || ""));
-                    this.router.navigate([""]);
-
+                    this.router.navigate(['']);
                 },
                 error: (error: HttpErrorResponse) => {
                     this.exception = error.error;

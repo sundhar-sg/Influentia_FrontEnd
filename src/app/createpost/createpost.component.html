@@ -23,11 +23,11 @@
                     <div class="d-flex align-items-center justify-content-around column-gap-4">
                         <div class="input-group d-flex flex-column row-gap-2">
                             <label for="publishedOnDate" class="form-label">Publishing Date</label>
-                            <input [required]="true" type="date" name="publishedOnDate" id="publishedOnDate" class="outline-none ps-2 rounded-2 border-1" [(ngModel)]="createPostDTO.publishedOnDate" />
+                            <input [required]="true" type="date" [min]="currentDate" name="publishedOnDate" id="publishedOnDate" class="outline-none ps-2 rounded-2 border-1" [(ngModel)]="createPostDTO.publishedOnDate" />
                         </div>
                         <div class="input-group d-flex flex-column row-gap-2">
                             <label for="publishedOnTime" class="form-label">Publishing Time</label>
-                            <input [required]="true" type="time" name="publishedOnTime" id="publishedOnTime" class="outline-none ps-2 rounded-2 border-1" [(ngModel)]="createPostDTO.publishedOnTime" />
+                            <input [required]="true" type="time" [min]="currentTime" name="publishedOnTime" id="publishedOnTime" class="outline-none ps-2 rounded-2 border-1" [(ngModel)]="createPostDTO.publishedOnTime" />
                         </div>
                     </div>
                 </div>

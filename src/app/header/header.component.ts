@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
 import { AuthTokenService } from '../shared/auth-token.service';
-import { share } from 'rxjs';
 import { LoginAuthService } from '../service/login-auth.service';
+import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-header',

@@ -13,9 +13,10 @@ import { ListuserpostsComponent } from './listuserposts/listuserposts.component'
 import { LoginSignupComponent } from './login-signup/login-signup.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { AuthguardService } from './auth/authguard.service';
 import { LoginAuthService } from './service/login-auth.service';
 import { AuthTokenService } from './shared/auth-token.service';
+import { AppauthGuard } from './guard/appauth.guard';
+import { PostanalyticsComponent } from './postanalytics/postanalytics.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthTokenService } from './shared/auth-token.service';
     ListuserpostsComponent,
     LoginSignupComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PostanalyticsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +38,9 @@ import { AuthTokenService } from './shared/auth-token.service';
     HttpClientModule
   ],
   providers: [
-    AuthguardService,
     LoginAuthService,
-    AuthTokenService
+    AuthTokenService,
+    AppauthGuard
   ],
   bootstrap: [AppComponent]
 })

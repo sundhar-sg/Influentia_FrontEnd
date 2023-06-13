@@ -23,10 +23,19 @@ export class CreatepostComponent {
         postStatus: "Scheduled"
     }
 
-    constructor(private contentHttpService: ContentHttpService) {}
+    currentTime: string = '';
+
+    currentDate: string = '';
+
+    constructor(private contentHttpService: ContentHttpService) {
+        const date = new Date();
+        this.currentDate = date.toISOString().split("T")[0];
+        this.currentTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
 
     onSubmit() {
         try {
+            alert(this.createPostDTO.publishedOnDate);
             this.contentHttpService.createPost(this.createPostDTO).subscribe({
                 next: (response) => {
                     alert("Post Successful!!!");

@@ -1,6 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { UserPostDTO } from '../dto/userpost-dto';
 import { ContentHttpService } from '../service/content-http.service';
+import { AuthTokenService } from '../shared/auth-token.service';
+import jwtDecode from 'jwt-decode';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserPostDisplayDTO } from '../dto/user-post-display-dto';
 
 @Component({
   selector: 'app-listuserposts',
@@ -10,24 +14,22 @@ import { ContentHttpService } from '../service/content-http.service';
 
 export class ListuserpostsComponent {
 
-    private exception: string = "";
+    exception: string = "";
 
-    userPosts: UserPostDTO[] = [];
+    userPosts: UserPostDisplayDTO[] = [];
 
-    constructor(private httpService: ContentHttpService) {
+    currentTime = new Date();
 
-        try {
-            this.httpService.getUserPosts("").subscribe({
-                next: (response: any[]) => {
+    constructor(private httpService: ContentHttpService, private sharedService: AuthTokenService) {
+        const username = this.sharedService.getAuthToken().sub;
+        this.httpService.getUserPosts(username)
+            .subscribe({
+                next: (response: UserPostDisplayDTO[]) => {
                     this.userPosts = response;
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.exception = error.error;
                 }
             });
-        } catch(ex) {
-            if(typeof ex === "string" && ex !== null) {
-                alert(ex);
-            }
-        }
     }
-
-
 }
