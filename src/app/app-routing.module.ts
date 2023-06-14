@@ -33,7 +33,8 @@ const routes: Routes = [
     {
         path: "contents/post-analytics",
         component: PostanalyticsComponent,
-        title: "Influentia - Contents - Post Analytics"
+        title: "Influentia - Contents - Post Analytics",
+        canActivate: [AppauthGuard]
     }
 ];
 

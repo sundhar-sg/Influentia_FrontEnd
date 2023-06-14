@@ -83,6 +83,10 @@
                     <label for="semiAnnualType" class="fs-5">2nd Semi Annual</label>
                 </div>
             </div>
+            <div *ngIf="insightValue !== ''" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
+                <label for="semiAnnualOfYear" class="fs-6 text-primary fw-semibold fst-italic">Enter the Year for the selected Semi Annual for getting its insights</label>
+                <input [(ngModel)]="yearValue" class="ps-2 border border-2 rounded-2 border-dark-subtle" style="height: 30px; width: 300px;" type="text" name="semiAnnualOfYear" id="semiAnnualOfYear" placeholder="Enter the Year for the selected Quarter">
+            </div>
         </div>
         <div *ngIf="selectedInsightType() === 'Year'" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
             <span class="fs-5 text-primary fw-semibold fst-italic">Choose the Year for your insights</span>
@@ -105,7 +109,88 @@
             <button (click)="resultSet()" [disabled]="selectedInsightType() === '' ? true : false" class="btn btn-success w-25" type="submit">Find Post Analytics</button>
         </div>
     </div>
-    <div class="w-75 py-5 shadow-lg rounded-3 d-flex align-items-center bg-white justify-content-center flex-wrap column-gap-5 row-gap-5">
+    <div *ngIf="finalReport.length > 0" class="w-75 py-5 shadow-lg rounded-3 d-flex align-items-center bg-white justify-content-center flex-wrap column-gap-5 row-gap-5">
         <span class="text-success fw-semibold fs-3">Analytics Report based on your preferences</span>
+        <table class="table w-100 d-flex flex-column align-items-center justify-content-center">
+            <thead>
+                <div>
+                    <tr *ngIf="insightType === 'Month' && ['January', 'March', 'May', 'July', 'August', 'October', 'December'].includes(monthValue)" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 {{monthValue}} {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">31 {{monthValue}} {{yearValue}}</span></td>
+                    </tr>
+                    <tr *ngIf="insightType === 'Month' && ['January', 'March', 'May', 'July', 'August', 'October', 'December'].includes(monthValue) === false" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 {{monthValue}} {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class = "text-primary">30 {{monthValue}} {{yearValue}}</span></td>
+                    </tr>
+                    <tr *ngIf="insightType === 'Month' && (['February'].includes(monthValue)) && checkLeapYear()" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 {{monthValue}} {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">29 {{monthValue}} {{yearValue}}</span></td>
+                    </tr>
+                    <tr *ngIf="insightType === 'Month' && (['February'].includes(monthValue)) && checkLeapYear() === false" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 {{monthValue}} {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">28 {{monthValue}} {{yearValue}}</span></td>
+                    </tr>
+                </div>
+                <div>
+                    <tr *ngIf="insightType === 'Quarter' && insightValue === '1st Quarter'" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 January {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">31 March {{yearValue}}</span></td>
+                    </tr>
+                    <tr *ngIf="insightType === 'Quarter' && insightValue === '2nd Quarter'" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 April {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class = "text-primary">30 June {{yearValue}}</span></td>
+                    </tr>
+                    <tr *ngIf="insightType === 'Quarter' && insightValue === '3rd Quarter'" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 July {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">30 September {{yearValue}}</span></td>
+                    </tr>
+                    <tr *ngIf="insightType === 'Quarter' && insightValue === '4th Quarter'" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 October {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">31 December {{yearValue}}</span></td>
+                    </tr>
+                </div>
+                <div>
+                    <tr *ngIf="insightType === 'HalfYear' && insightValue === '1st Semi Annual'" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 January {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">30 June {{yearValue}}</span></td>
+                    </tr>
+                    <tr *ngIf="insightType === 'HalfYear' && insightValue === '2nd Semi Annual'" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 July {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class = "text-primary">31 December {{yearValue}}</span></td>
+                    </tr>
+                </div>
+                <div>
+                    <tr *ngIf="insightType === 'Year'" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">01 January {{yearValue}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">31 December {{yearValue}}</span></td>
+                    </tr>
+                </div>
+                <div>
+                    <tr *ngIf="insightType === 'Custom'" class="py-2">
+                        <td class="fs-5 fw-semibold">From Date: <span class="text-primary">{{formattedStartDate}}</span></td>
+                        <td class="fs-5 fw-semibold">To Date: <span class="text-primary">{{formattedEndDate}}</span></td>
+                    </tr>
+                </div>
+            </thead>
+            <tbody>
+                <div *ngFor="let report of finalReport">
+                    <tr>
+                        <th class="fs-5 fw-semibold">Social Account: <span class="text-primary">{{report.socialAccountType}} ({{username}})</span></th>
+                    </tr>
+                    <tr>
+                        <td class="fs-6">Text Posts</td>
+                        <td class="fw-semibold text-primary">{{report.textPosts}}</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-6">Image Posts</td>
+                        <td class="fw-semibold text-primary">{{report.imagePosts}}</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-6">Video Posts</td>
+                        <td class="fw-semibold text-primary">{{report.videoPosts}}</td>
+                    </tr>
+                </div>
+            </tbody>
+        </table>
     </div>
 </div>
