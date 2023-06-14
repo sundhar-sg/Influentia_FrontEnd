@@ -42,31 +42,31 @@ export class ContentHttpService {
 
     socialAccountsByUsername(username: string): Observable<string[]> {
         const url = `${this.baseUrl}/post-analytics/${username}`;
-        return this.http.get<string[]>(url, { responseType: 'json' });
+        return this.http.get<string[]>(url);
     }
 
-    filteringUserPostsByMonth(username: string, month: string, year: number, socialAccountType: string ): Observable<number> {
-        const url = `${this.baseUrl}/post-analytics/monthly/${username}/${month}/${year}/${socialAccountType}`;
+    filteringUserPostsByMonth(username: string, month: string, year: number, socialAccountType: string, postType: string): Observable<number> {
+        const url = `${this.baseUrl}/post-analytics/monthly/${username}/${month}/${year}/${socialAccountType}/${postType}`;
         return this.http.get<number>(url, { responseType: 'json' });
     }
 
-    filteringUserPostsByQuarter(username: string, quarterType: string, year: number, socialAccountType: string): Observable<number> {
-        const url = `${this.baseUrl}/post-analytics/quarterly/${username}/${quarterType}/${year}/${socialAccountType}`;
+    filteringUserPostsByQuarter(username: string, quarterType: string, year: number, socialAccountType: string, postType: string): Observable<number> {
+        const url = `${this.baseUrl}/post-analytics/quarterly/${username}/${quarterType}/${year}/${socialAccountType}/${postType}`;
         return this.http.get<number>(url, { responseType: "json" });
     }
 
-    filteringUserPostsByHalfYearly(username: string, halfYearlyType: string, year: number, socialAccountType: string): Observable<number> {
-        const url = `${this.baseUrl}/post-analytics/half-yearly/${username}/${halfYearlyType}/${year}/${socialAccountType}`;
+    filteringUserPostsByHalfYearly(username: string, halfYearlyType: string, year: number, socialAccountType: string, postType: string): Observable<number> {
+        const url = `${this.baseUrl}/post-analytics/half-yearly/${username}/${halfYearlyType}/${year}/${socialAccountType}/${postType}`;
         return this.http.get<number>(url, { responseType: 'json' });
     }
 
-    filteringUserPostsByYearly(username: string, year: number, socialAccountType: string): Observable<number> {
-        const url = `${this.baseUrl}/post-analytics/yearly/${username}/${year}/${socialAccountType}`;
+    filteringUserPostsByYearly(username: string, year: number, socialAccountType: string, postType: string): Observable<number> {
+        const url = `${this.baseUrl}/post-analytics/yearly/${username}/${year}/${socialAccountType}/${postType}`;
         return this.http.get<number>(url, { responseType: 'json' });
     }
 
-    filteringUserPostsByCustomInsights(username: string, startDate: string, endDate: string, socialAccountType: string): Observable<number> {
-        const url = `${this.baseUrl}/post-analytics/custom/${username}/${startDate}/${endDate}/${socialAccountType}`;
+    filteringUserPostsByCustomInsights(username: string, startDate: string, endDate: string, socialAccountType: string, postType: string): Observable<number> {
+        const url = `${this.baseUrl}/post-analytics/custom/${username}/${startDate}/${endDate}/${socialAccountType}/${postType}`;
         return this.http.get<number>(url, { responseType: "json" });
     }
 }

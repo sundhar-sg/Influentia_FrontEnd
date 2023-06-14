@@ -66,6 +66,10 @@
                     <label for="quarterType" class="fs-5">4th Quarter</label>
                 </div>
             </div>
+            <div *ngIf="insightValue !== ''" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
+                <label for="quarterOfYear" class="fs-6 text-primary fw-semibold fst-italic">Enter the Year for the selected Quarter for getting its insights</label>
+                <input [(ngModel)]="yearValue" class="ps-2 border border-2 rounded-2 border-dark-subtle" style="height: 30px; width: 300px;" type="text" name="quarterOfYear" id="quarterOfYear" placeholder="Enter the Year for the selected Quarter">
+            </div>
         </div>
         <div *ngIf="selectedInsightType() === 'HalfYear'" class="d-flex flex-column align-items-center justify-content-center row-gap-3">
             <span class="fs-5 text-primary fw-semibold fst-italic">Choose the Semi Annual for your insights</span>
@@ -98,7 +102,7 @@
             </div>
         </div>
         <div>
-            <button [disabled]="selectedInsightType() === '' ? true : false" class="btn btn-success w-25" type="submit">Find Post Analytics</button>
+            <button (click)="resultSet()" [disabled]="selectedInsightType() === '' ? true : false" class="btn btn-success w-25" type="submit">Find Post Analytics</button>
         </div>
     </div>
     <div class="w-75 py-5 shadow-lg rounded-3 d-flex align-items-center bg-white justify-content-center flex-wrap column-gap-5 row-gap-5">

@@ -25,7 +25,7 @@ export class SignupComponent {
         lastname: "",
         username: "",
         password: "",
-        planID: Number('0'),
+        planID: Number(''),
         paymentMode: "",
         validityDuration: "",
     }
