@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ContentHttpService } from '../service/content-http.service';
-import { AuthTokenService } from '../shared/auth-token.service';
 import { AnalyticsDTO } from '../dto/analytics-dto';
+import { LoginAuthService } from '../service/login-auth.service';
 
 @Component({
   selector: 'app-postanalytics',
@@ -27,7 +27,7 @@ export class PostanalyticsComponent {
 
     finalReport: AnalyticsDTO[] = [];
 
-    constructor(private httpService: ContentHttpService, private sharedService: AuthTokenService) {}
+    constructor(private httpService: ContentHttpService, private loginAuth: LoginAuthService) {}
 
     selectedInsightType() {
         return this.insightType;
@@ -48,7 +48,7 @@ export class PostanalyticsComponent {
     }
 
     resultSet() {
-        this.username = this.sharedService.getAuthToken().sub;
+        this.username = this.loginAuth.getToken().sub;
         let socialAccountsUsed = this.httpService.socialAccountsByUsername(this.username);
         const postTypes : string[] = ['Text', 'Image', 'Video'];
         this.finalReport = [];

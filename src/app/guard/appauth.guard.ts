@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthTokenService } from '../shared/auth-token.service';
+import { LoginAuthService } from '../service/login-auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppauthGuard implements CanActivate {
 
-    constructor(private authToken: AuthTokenService, private router: Router) {}
+    constructor(private authToken: LoginAuthService, private router: Router) {}
 
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         
-            const currentUser: any = this.authToken.getAuthToken();
+            const currentUser: any = this.authToken.getToken();
 
             if(!currentUser) {
                 this.router.navigate(["/login"]);

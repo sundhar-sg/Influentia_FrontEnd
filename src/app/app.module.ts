@@ -14,7 +14,6 @@ import { LoginSignupComponent } from './login-signup/login-signup.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginAuthService } from './service/login-auth.service';
-import { AuthTokenService } from './shared/auth-token.service';
 import { AppauthGuard } from './guard/appauth.guard';
 import { PostanalyticsComponent } from './postanalytics/postanalytics.component';
 
@@ -39,7 +38,6 @@ import { PostanalyticsComponent } from './postanalytics/postanalytics.component'
   ],
   providers: [
     LoginAuthService,
-    AuthTokenService,
     AppauthGuard
   ],
   bootstrap: [AppComponent]

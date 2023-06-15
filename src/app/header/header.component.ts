@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthTokenService } from '../shared/auth-token.service';
 import { LoginAuthService } from '../service/login-auth.service';
-import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-header',
@@ -10,5 +8,6 @@ import jwtDecode from 'jwt-decode';
 })
 export class HeaderComponent {
 
-    constructor(public sharedService: AuthTokenService, public loginAuth: LoginAuthService) {}
+    constructor(public loginAuth: LoginAuthService) {
+    }
 }

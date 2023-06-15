@@ -4,7 +4,6 @@ import jwtDecode from 'jwt-decode';
 import { LoginAuthService } from '../service/login-auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthTokenService } from '../shared/auth-token.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginComponent {
 
     responseDTO: any = '';    
 
-    constructor(private httpService: LoginAuthService, private router: Router, private sharedService: AuthTokenService) {}
+    constructor(private httpService: LoginAuthService, private router: Router) {}
 
     onSubmit() {
         this.httpService.login(this.userDTO)
@@ -30,7 +29,7 @@ export class LoginComponent {
                 next: (response) => {
                     // alert("Login Successfull :)");
                     this.responseDTO = jwtDecode(response.token);
-                    this.sharedService.setAuthToken(jwtDecode(localStorage.getItem("authToken") || ""));
+                    this.httpService.setToken(response.token);
                     this.router.navigate(['']);
                 },
                 error: (error: HttpErrorResponse) => {

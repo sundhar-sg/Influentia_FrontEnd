@@ -1,10 +1,8 @@
-import { Component, Inject } from '@angular/core';
-import { UserPostDTO } from '../dto/userpost-dto';
+import { Component } from '@angular/core';
 import { ContentHttpService } from '../service/content-http.service';
-import { AuthTokenService } from '../shared/auth-token.service';
-import jwtDecode from 'jwt-decode';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserPostDisplayDTO } from '../dto/user-post-display-dto';
+import { LoginAuthService } from '../service/login-auth.service';
 
 @Component({
   selector: 'app-listuserposts',
@@ -19,10 +17,11 @@ export class ListuserpostsComponent {
     userPosts: UserPostDisplayDTO[] = [];
 
     currentTime = new Date();
+    
+    username = this.loginAuth.getToken().sub;
 
-    constructor(private httpService: ContentHttpService, private sharedService: AuthTokenService) {
-        const username = this.sharedService.getAuthToken().sub;
-        this.httpService.getUserPosts(username)
+    constructor(private httpService: ContentHttpService, private loginAuth: LoginAuthService) {
+        this.httpService.getUserPosts(this.username)
             .subscribe({
                 next: (response: UserPostDisplayDTO[]) => {
                     this.userPosts = response;
@@ -31,5 +30,19 @@ export class ListuserpostsComponent {
                     this.exception = error.error;
                 }
             });
+    }
+
+    cancelPost(button: Event | null) {
+        let target = button?.target as HTMLButtonElement;
+        let value = target.value;
+        this.httpService.cancelUserPosts(Number(value), this.username)
+            .subscribe({
+                next: (response) => {
+                    alert(response);
+                },
+                error: (errorResponse) => {
+                    alert(errorResponse);
+                }
+            })
     }
 }

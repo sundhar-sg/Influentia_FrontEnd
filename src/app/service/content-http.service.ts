@@ -40,6 +40,12 @@ export class ContentHttpService {
         );
     }
 
+    cancelUserPosts(postID: number, username: string): Observable<string> {
+        const url = `${this.baseUrl}/cancel-post`;
+        let data = {postID: postID, username: username};
+        return this.http.put(url, data, { responseType: 'text' });
+    }
+
     socialAccountsByUsername(username: string): Observable<string[]> {
         const url = `${this.baseUrl}/post-analytics/${username}`;
         return this.http.get<string[]>(url);
