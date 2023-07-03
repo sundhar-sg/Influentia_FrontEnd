@@ -35,7 +35,6 @@ export class CreatepostComponent {
 
     onSubmit() {
         try {
-            alert(this.createPostDTO.publishedOnDate);
             this.contentHttpService.createPost(this.createPostDTO).subscribe({
                 next: (response) => {
                     alert("Post Successful!!!");
