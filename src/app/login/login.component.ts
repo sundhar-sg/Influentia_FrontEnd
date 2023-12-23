@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserDTO } from '../dto/user-dto';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { LoginAuthService } from '../service/login-auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';

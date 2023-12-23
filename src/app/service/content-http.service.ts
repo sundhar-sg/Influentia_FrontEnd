@@ -8,7 +8,7 @@ import { UserPostDisplayDTO } from '../dto/user-post-display-dto';
   providedIn: 'root'
 })
 export class ContentHttpService {
-    private baseUrl = "http://localhost:8080/api/content";
+    private baseUrl = "http://ec2-43-205-254-11.ap-south-1.compute.amazonaws.com:8080/api/content";
 
     private offsetInMillis = 5 * 60 * 60 * 1000 + 30 * 60 * 1000;
 

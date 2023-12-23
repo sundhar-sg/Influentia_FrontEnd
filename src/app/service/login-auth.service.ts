@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { UserDTO } from '../dto/user-dto';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginAuthService {
 
-    private url = 'http://localhost:8080/api';
+    private url = 'http://ec2-43-205-254-11.ap-south-1.compute.amazonaws.com:8080/api';
 
     private loggedIn: boolean = false;
 

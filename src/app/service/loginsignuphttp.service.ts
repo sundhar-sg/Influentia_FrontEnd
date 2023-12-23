@@ -9,7 +9,7 @@ import { SignupDTO } from '../dto/signup-dto';
 })
 export class LoginsignuphttpService {
 
-    private baseUrl: string = 'http://localhost:8080/api';
+    private baseUrl: string = 'http://ec2-43-205-254-11.ap-south-1.compute.amazonaws.com:8080/api';
 
     constructor(private http: HttpClient) { }
 
